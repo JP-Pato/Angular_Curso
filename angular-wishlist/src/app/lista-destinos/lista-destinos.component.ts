@@ -20,5 +20,10 @@ export class ListaDestinosComponent implements OnInit {
   	this.destinos.push(new DestinoViaje(nombre, url));
  	return false;
   }
+  
+  elegido(d: DestinoViaje) {
+    this.destinos.forEach(function (x) {x.setSelected(false);});
+    d.setSelected(true);
+  }
 
 }
