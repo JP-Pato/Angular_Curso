@@ -19,7 +19,7 @@ export class FormDestinoViajeComponent implements OnInit {
     this.onItemAdded = new EventEmitter();
     //vinculacion con tag html
     this.fg = this.fb.group({
-      nombre: [''],
+      nombre: ['', Validators.required],
       url: ['']
     });
     
