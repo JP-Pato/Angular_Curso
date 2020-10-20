@@ -1,31 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
+//importando ruteo
+import { RouterModule, Routes } from '@angular/router';
+//importando formularios
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DestinoViajeComponent } from './destino-viaje/destino-viaje.component';
-import { ListaDestinosComponent } from './lista-destinos/lista-destinos.component';
+import { ListaDestinoComponent } from './lista-destinos/lista-destinos.component';
 import { DestinoDetalleComponent } from './destino-detalle/destino-detalle.component';
+import { FormDestinoViajeComponent } from './form-destino-viaje/form-destino-viaje.component';
+import { DestinosApiClient } from './models/destinos-api-client.model';
+
+// definiendo direcciones del nav
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: ListaDestinosComponent},
-  { path: 'destino', component: DestinoDetalleComponent}
+  { path: 'home', component: ListaDestinoComponent},
+  { path: 'destino', component: DestinoDetalleComponent},
 ];
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DestinoViajeComponent,
-    ListaDestinosComponent,
-    DestinoDetalleComponent
+    ListaDestinoComponent,
+    DestinoDetalleComponent,
+    FormDestinoViajeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes), //registrando las rutas
+    FormsModule, //agregar un formulario
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    DestinosApiClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
