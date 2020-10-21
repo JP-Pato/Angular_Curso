@@ -17,14 +17,13 @@
     </div>
     <hr class="mb-5">
     <!--Cards -->
-    <!-- ($event) acepta el evento que llega por el eventEmitter-->
     <!-- let i=index indice del for -->
     <div class="row">
         <app-destino-viaje 
         *ngFor="let d of all; let i=index" 
         [destino]="d"
-        [position]="i+1"
-        (onClicked)="elegido($event)"
+        [idx]="i+1"
+        (onClicked)="elegido(d)"
         ></app-destino-viaje>
     </div>
 
