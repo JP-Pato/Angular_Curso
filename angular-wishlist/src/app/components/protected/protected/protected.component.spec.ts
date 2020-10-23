@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListaDestinosComponent } from './lista-destinos.component';
+import { ProtectedComponent } from './protected.component';
 
-describe('ListaDestinosComponent', () => {
-  let component: ListaDestinosComponent;
-  let fixture: ComponentFixture<ListaDestinosComponent>;
+describe('ProtectedComponent', () => {
+  let component: ProtectedComponent;
+  let fixture: ComponentFixture<ProtectedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListaDestinosComponent ]
+      declarations: [ ProtectedComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListaDestinosComponent);
+    fixture = TestBed.createComponent(ProtectedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
