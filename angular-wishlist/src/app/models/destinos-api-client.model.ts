@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DestinosApiClient {
+  getById: any;
 	constructor(private store: Store<AppState>) {
 
 	}

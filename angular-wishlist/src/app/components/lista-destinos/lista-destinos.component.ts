@@ -5,11 +5,11 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../app.module';
 import { ElegidoFavoritoAction, NuevoDestinoAction } from '../../models/destinos-viajes-state.models';
 
-
 @Component({
   selector: 'app-lista-destino',
   templateUrl: './lista-destinos.component.html',
-  styleUrls: ['./lista-destinos.component.css']
+  styleUrls: ['./lista-destinos.component.css'],
+  providers: [DestinosApiClient],
 })
 
 export class ListaDestinoComponent implements OnInit {
