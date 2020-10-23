@@ -12,34 +12,33 @@ class DestinosApiClientViejo {
   }
 }
 
-interface AppConfig {
-  apiEndpoint: String;
-}
+//interface AppConfig {
+ // apiEndpoint: String;
+//}
+//const APP_CONFIG_VALUE: AppConfig = {
+ // apiEndpoint: 'mi_api.com'
+//};
 
-const APP_CONFIG_VALUE: AppConfig = {
-  apiEndpoint: 'mi_api.com'
-};
+//const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
-const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
-
-class DestinosApiClientDecorated extends DestinosApiClient {
-  constructor(@Inject(APP_CONFIG) private config: AppConfig, store: Store<AppState>) {
-    super(store);
-  }
-  getById(id: String): DestinoViaje {
-    console.log('llamando por la clase decorada!');
-    console.log('config: ' + this.config.apiEndpoint);
-    return super.getById(id);
-  }
-}
+//class DestinosApiClientDecorated extends DestinosApiClient {
+  //constructor(@Inject(APP_CONFIG) private config: AppConfig, store: Store<AppState>) {
+  //  super(store);
+ // }
+ // getById(id: String): DestinoViaje {
+  //  console.log('llamando por la clase decorada!');
+  //  console.log('config: ' + this.config.apiEndpoint);
+ //   return super.getById(id);
+//  }
+//}
 
 @Component({
   selector: 'app-destino-detalle',
   templateUrl: './destino-detalle.component.html',
   styleUrls: ['./destino-detalle.component.css'],
   providers: [
-    { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE },
-    { provide: DestinosApiClient, useClass: DestinosApiClientDecorated },
+   // { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE },
+   // { provide: DestinosApiClient, useClass: DestinosApiClientDecorated },
     { provide: DestinosApiClientViejo, useExisting: DestinosApiClient }
   ]
 })
