@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject, forwardRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { fromEvent } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { DestinoViaje } from '../../models/destino-viaje.model';
+import { APP_CONFIG, AppConfig } from 'src/app/app.module';
 
 
 
@@ -18,21 +19,24 @@ export class FormDestinoViajeComponent implements OnInit {
   fg: FormGroup;
   minLongitud = 3;
   searchResults: string[];
+  fb: any;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(fb: FormBuilder, @Inject(forwardRef(() => APP_CONFIG)) private config: AppConfig) { 
     //inicializar
     this.onItemAdded = new EventEmitter();
     //vinculacion con tag html
-    this.fg = this.fb.group({
+    this.fg = fb.group({
       nombre: ['', Validators.compose([
         Validators.required,
+        this.nombreValidator,
         this.nomnbreVallidatorParametrizable(this.minLongitud)
       ])],
       url: ['']
     });
     
     //observador de tipeo
-    this.fg.valueChanges.subscribe((form: any) =>{
+    this.fg.valueChanges.subscribe(
+      (form: any) => {
       console.log('cambio el formulario: ', form);
     });
   }
@@ -45,10 +49,8 @@ export class FormDestinoViajeComponent implements OnInit {
         filter(text => text.length > 2),
         debounceTime(200),
         distinctUntilChanged(),
-        switchMap(() => ajax('/assets/datos.json')),
-      ).subscribe(AjaxResponse => {
-        this.searchResults = AjaxResponse.response;
-      });
+        switchMap((text: string) => ajax(this.config.apiEndpoint + '/ciudades?q=' + text))
+        ).subscribe(ajaxResponse => this.searchResults = ajaxResponse.response);
   }
 
   guardar(nombre: string, url: string): boolean {
