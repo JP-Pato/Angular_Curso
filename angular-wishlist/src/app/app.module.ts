@@ -31,6 +31,8 @@ import { ReservasModule } from './reservas/reservas.module';
 import { DestinoViaje } from './models/destino-viaje.model';
 import { from, Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+import { EspiameDirective } from './espiame.directive';
+import { TrackearClickDirective } from './trackear-click.directive';
 
 export const childrenRoutesVuelos: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -178,6 +180,8 @@ const reducersInitialState = {
     VuelosMainComponentComponent,
     VuelosMasInfoComponentComponent,
     VuelosDetalleComponent,
+    EspiameDirective,
+    TrackearClickDirective,
   ],
   imports: [
     BrowserModule,
